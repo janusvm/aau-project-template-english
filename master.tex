@@ -1,0 +1,81 @@
+% master.tex : master file for the project
+% ------------------------------------------------------------------------------
+% This is the main file in the project, which collects the contents from all the
+% input files (text, images, literature databases, etc.).
+
+% The 'book' class is a document class with many flexible options.
+% See https://tex.stackexchange.com/a/36989/118167
+\documentclass[11pt,a4paper,twoside,openright,english]{book}
+
+% Some top level variables that are used to automatically input title, authors,
+% etc. in the title page and front page.
+\def \projecttitle       {Project Main Title}
+\def \projectsubtitle    {Project Subtitle}
+\def \projecttheme       {Project Theme}
+\def \projectdegree      {Mathematics}  % or Mathematics-Economics/Technology
+\def \projectperiod      {Fall Semester 20XX}
+\def \projectnumber      {P1}
+\def \projectgroup       {X123}
+\def \projectauthors     {
+  Project Author 1\\
+  Project Author 2\\
+  Project Author 3\\
+  Project Author 4
+  % ...
+}
+\def \projectsupervisors {
+  Project Supervisor 1\\
+  Project Supervisor 2
+  % ...
+}
+
+% The preamble, i.e. all the settings and commands that go before actual
+% document contents, in this template is handled in the single file aaumath.sty,
+% which defines a package that can be loaded here with \usepackage.
+\usepackage{aaumath}
+
+% All contents of the document go between the \begin and \end commands for the
+% 'document' environment.
+\begin{document}
+
+% The front matter is not counted in the numbered pages and are instead numbered
+% with roman numerals. This consists of, for example, the front page, title
+% page, preface, and table of contents.
+\frontmatter
+\include{incl/misc/frontpage}
+\include{incl/misc/titlepage}
+\include{incl/misc/contents}
+
+% The main matter is were the bulk of your work goes. Pages and headings have
+% arabic numbers.
+\mainmatter
+
+% Input files should be partitioned such that each file corresponds to one
+% chapter. The \include command forces a page break and inserts the contents of
+% the input file.
+
+% \include{incl/main/example1}
+% \include{incl/main/example2}
+% ...
+
+% Appendices are included inside an appendices block, which enumerates chapters
+% with letters, starting from A, instead of numbers.
+\begin{appendices}
+  % \include{incl/app/appendix1}
+  % \include{incl/app/appendix2}
+  % ..
+\end{appendices}
+
+% The backmatter is for extra stuff. Headings are not numbered.
+\backmatter
+
+% Automatic list of references, based on which references in the literature
+% database files were referenced throughout the document.
+\bibliographystyle{apalike}
+\bibliography{
+  incl/bib/books,
+  incl/bib/articles,
+  incl/bib/software
+}
+
+\end{document}

@@ -1,0 +1,84 @@
+% cmds.tex : custom commands and environments
+% ------------------------------------------------------------------------------
+% This file contains definitions for custom commands and environments, used for
+% shorthand notation for macros used often in the project
+
+% Mathematical symbols ---------------------------------------------------------
+\newcommand{\N}{\mathbb{N}}          % natural numbers
+\newcommand{\Z}{\mathbb{Z}}          % integers
+\newcommand{\Q}{\mathbb{Q}}          % rational numbers
+\newcommand{\R}{\mathbb{R}}          % real numbers
+\newcommand{\C}{\mathbb{C}}          % complex numbers
+\newcommand{\ind}{\mathbbm{1}}       % indicator function
+\newcommand{\bigO}{\mathcal{O}}      % big O
+\renewcommand{\vec}[1]{\bm{#1}}      % bold vector style
+
+% Theorem enviroments ----------------------------------------------------------
+% http://www.ctex.org/documents/packages/math/amsthdoc.pdf
+\theoremstyle{plain}                 % Bold title, italic body text
+\newtheorem{thm}{Theorem}[chapter]   % Theorems, numbered by chapter
+\newtheorem{lem}[thm]{Lemma}         % Lemmas, numbered like theorems
+\newtheorem{prop}[thm]{Proposition}  % Propositions, numbered like theorems
+\newtheorem*{cor}{Corollary}         % Corollaries, unnumbered
+
+\theoremstyle{definition}            % Bold title, upright body text
+\newtheorem{defn}[thm]{Definition}   % Definitions, numbered like theorems
+\newtheorem{exmp}[thm]{Example}      % Examples, numbered like theorems
+
+% Figure commands --------------------------------------------------------------
+
+% imgfig ("image figure")
+% Shortcut command for inserting an image from the fig/img folder
+% Arguments:
+%   * (optional) figure width; percentage of text width (default: 0.75)
+%   * file name (without fig/img/ and file extension); also used for label
+%   * the figure caption
+% Examples:
+%   \imgfig{image-name}{Caption goes here}
+%   \imgfig[0.5]{image-name}{Caption goes here}
+\newcommand{\imgfig}[3][0.75]{
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=#1\textwidth]{fig/img/#2}
+    \caption{#3}
+    \label{fig:#2}
+  \end{figure}
+}
+
+% dimgfig ("double image figure")
+% Shortcut command for inserting two images side by side
+% Arguments:
+%   * (optional) width split ratio (default: 0.5, i.e. even split)
+%   * file name for the left figure, without fig/img/ and file extension
+%   * caption for the left figure
+%   * file name for the right figure, without fig/img/ and file extension
+%   * caption for the right figure
+% Examples:
+%   \dimgfig{img1}{First caption}{img2}{Second caption}
+%   \dimgfig[0.3]{img1}{First caption}{img2}{Second caption}
+% Alteratively, see
+% https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Subfloats
+\newcommand{\dimgfig}[5][0.5]{
+  \ifx\dimgleftwidth\undefined
+    \newlength{\dimgleftwidth}
+    \newlength{\dimgrightwidth}
+  \fi
+  \setlength{\dimgleftwidth}{#1\textwidth-0.02\textwidth}
+  \setlength{\dimgrightwidth}{0.96\textwidth-\dimgleftwidth}
+  \begin{figure}[htbp]
+    \centering
+    \begin{minipage}[t]{\dimgleftwidth}
+      \centering
+      \includegraphics[width=\linewidth]{fig/img/#2}
+      \caption{#3}
+      \label{fig:#2}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{\dimgrightwidth}
+      \centering
+      \includegraphics[width=\linewidth]{fig/img/#4}
+      \caption{#5}
+      \label{fig:#4}
+    \end{minipage}
+  \end{figure}
+}

@@ -1,0 +1,25 @@
+% incl/misc/contents.tex :
+% ------------------------------------------------------------------------------
+
+\pdfbookmark[0]{Contents}{contents}
+
+% The settings in this file are grouped so they only apply here
+\begingroup
+
+% Temporarily disable twoside layout to avoid blank pages in this section
+\makeatletter
+\@twosidefalse
+\makeatother
+
+% Put table of contents on its own page (best for a TOC that fits on one page)
+\tableofcontents
+\clearpage
+
+% Put the lists on subsequent pages without page breaks
+\let\clearpage\relax
+\listoffigures
+\listoftables
+\listofalgorithms
+\lstlistoflistings
+
+\endgroup

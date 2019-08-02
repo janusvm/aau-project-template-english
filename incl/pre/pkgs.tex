@@ -1,0 +1,50 @@
+% incl/pre/pkgs.tex : packages used in the project
+% ------------------------------------------------------------------------------
+% Macros are bundled together in packages, which can be loaded with \usepackage
+
+
+% Base packages ----------------------------------------------------------------
+\usepackage[T1]{fontenc}           % support for printing accented characters
+\usepackage[utf8]{inputenc}        % support for inputting accented characters
+\usepackage{babel}                 % language specific settings
+\usepackage[square]{natbib}        % set citation style to use square brackets
+\usepackage{hyperref}              % insert clickable hyperlinks
+\usepackage{xpatch}                % macro patching commands
+
+% Math packages ----------------------------------------------------------------
+\usepackage{mathtools}             % math commands and environments
+\usepackage{amssymb}               % additional math symbols
+\usepackage{amsthm}                % theorem environments
+\usepackage{bbm}                   % improved 'blackboard bold' styling
+\usepackage{bm}                    % improved bold faces for math symbols
+
+% Figure packages --------------------------------------------------------------
+\usepackage[dvipsnames]{xcolor}    % font colouring functionality
+\usepackage{graphicx}              % handling of images
+\usepackage{booktabs}              % improved tables
+\usepackage{caption}               % customisation of captions
+\usepackage{subcaption}            % for grouping figures together
+\usepackage{tikz}                  % drawing vector graphics
+\usepackage[chapter]{algorithm}    % algorithm floats
+\usepackage[noend]{algpseudocode}  % pseudocode listings
+\usepackage{listings}              % source code listings
+
+% Styling packages -------------------------------------------------------------
+\usepackage{microtype}             % improve full justification and font kerning
+\usepackage{emptypage}             % suppress page numbering on empty pages
+\usepackage{fancyhdr}              % easy customisation of headers and footers
+\usepackage{titlesec}              % easy customisation of section titles
+\usepackage[margin=3cm]{geometry}  % adjust page margins
+\usepackage[toc,page]{appendix}    % improved appendix control
+\usepackage[some]{background}      % use background image on front page
+
+% Font packages ----------------------------------------------------------------
+% http://www.tug.org/pracjourn/2006-1/hartke/hartke.pdf
+% http://www.tug.dk/FontCatalogue/
+\usepackage{fourier}               % Adobe Utopia base font
+\usepackage{DejaVuSansMono}        % DejaVu Sans Mono for monospace text
+
+% Bundled 3rd party package ----------------------------------------------------
+% The aautitlepage package consists of modified code from a third party.
+% See incl/pre/ext/aautitlepage.sty for details
+\usepackage{incl/pre/ext/aautitlepage}

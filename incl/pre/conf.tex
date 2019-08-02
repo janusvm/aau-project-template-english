@@ -1,0 +1,102 @@
+% incl/pre/conf.tex : package configurations
+% ------------------------------------------------------------------------------
+% This file includes customisations for setting up the document
+
+
+% Custom colors ----------------------------------------------------------------
+% Official AAU color palette
+% https://www.design.aau.dk/om-aau-design/Farver/
+\definecolor{AAUblue1}{RGB}{ 33, 26, 82}
+\definecolor{AAUblue2}{RGB}{ 89, 79,191}
+\definecolor{AAUgrey1}{RGB}{ 84, 97,110}
+\definecolor{AAUgrey2}{RGB}{104,119,132}
+\definecolor{AAUgrey3}{RGB}{162,172,182}
+\definecolor{AAUgrey4}{RGB}{222,223,226}
+\definecolor{AAUgreen}{RGB}{157,187, 29}
+\definecolor{AAUteal} {RGB}{ 94,150,149}
+\definecolor{AAUred}  {RGB}{223,103, 82}
+
+% Headers and footers ----------------------------------------------------------
+% http://mirrors.dotsrc.org/ctan/macros/latex/contrib/fancyhdr/fancyhdr.pdf
+\fancyhead{}                            % clear default header fields
+\fancyhead[LE,RO]{Group \projectgroup}  % left on even and right on odd
+\fancyhead[RE]{\leftmark}               % right on even
+\fancyhead[LO]{\rightmark}              % left on odd
+\fancyfoot{}                            % clear default footer fields
+\fancyfoot[CE,CO]{\thepage}             % centered page numbers
+\pagestyle{fancy}                       % activate fancy style
+
+% Section titles ---------------------------------------------------------------
+% http://mirrors.dotsrc.org/ctan/macros/latex/contrib/titlesec/titlesec.pdf
+
+% Format chapter title style with a boxed number
+\titleformat
+{\chapter}
+[hang]
+{\Huge\bfseries\color{white}}
+{\colorbox{AAUblue1}{\makebox[30pt]{\strut\thechapter}}}
+{0.5em}
+{\Huge\bfseries\color{AAUblue1}}
+
+% Format part title styles to be on two lines
+\titleformat
+{\part}
+[display]
+{\Huge\bfseries\color{AAUblue1}\filcenter}
+{\huge\partname{} \thepart}
+{0em}
+{}
+
+% Adjust title and TOC settings of the appendix page
+\renewcommand{\appendixname}{Appendix}
+\renewcommand{\appendixtocname}{Appendices}
+\renewcommand{\appendixpagename}{\textcolor{AAUblue1}{Appendices}}
+\xpatchcmd{\addappheadtotoc}{{chapter}}{{part}}{}{}
+
+% Figure settings --------------------------------------------------------------
+% Format captions
+% http://mirrors.dotsrc.org/ctan/macros/latex/contrib/caption/caption-eng.pdf
+\captionsetup{font=it,labelfont=bf}
+
+% Useful TiKZ libraries
+% https://tex.stackexchange.com/q/42611
+\usetikzlibrary{arrows.meta}  % customisable arrow tips
+\usetikzlibrary{calc}         % extended coordinate calculations
+
+% Predefined TiKZ styles for drawing nodes and edge labels in a graph
+\tikzstyle{point} = [fill,shape=circle,minimum size=3pt,inner sep=0pt]
+\tikzstyle{edge}  = [fill=white,midway,inner sep=1pt]
+
+% Algorithms -------------------------------------------------------------------
+% Settings for displaying algorithm floats
+\floatname{algorithm}{Algorithm}
+\renewcommand{\listalgorithmname}{List of Algorithms}
+
+% Source code style ------------------------------------------------------------
+% Simple styling for Python source code
+% https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+\lstdefinestyle{custompy}{
+  belowcaptionskip=\baselineskip,
+  breaklines=true,
+  language=Python,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{AAUblue1},
+  commentstyle=\itshape\color{AAUgrey3},
+  identifierstyle=\color{AAUblue2},
+  stringstyle=\color{AAUteal},
+}
+\lstset{language=Python,style=custompy,captionpos=b}
+\renewcommand{\lstlistingname}{Listing}
+\renewcommand{\lstlistlistingname}{List of Listings}
+
+% Autoref settings -------------------------------------------------------------
+% https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing#autoref
+\def\partautorefname{Part}
+\def\chapterautorefname{Chapter}
+\def\sectionautorefname{Section}
+\def\subsectionautorefname{Subsection}
+\def\figureautorefname{Figure}
+\def\tableautorefname{Table}
+\def\algorithmautorefname{Algorithm}
+\def\lstinputlistingautorefname{Listing}
